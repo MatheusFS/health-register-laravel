@@ -9,10 +9,10 @@
             <ul class="list-unstyled components mb-0">
               <p class="text-center text-white bg-primary m-0 py-3">
                 <i class='fas fa-"+icon+" mr-2' style='font-size:1.5rem'></i>
-                <span class='menuPagesSpan'>NOME</span>
+                <span class='menuPagesSpan'>{{ Auth::user()->cadastro->nome }}</span>
               </p>
                 <li id="navDashboard">
-                    <a target="ifr_content" href="dashboard.php">
+                    <a href="/dashboard">
                         <i class="fas fa-home menuPagesIcon"></i>
                         <span class="menuPagesSpan">Dashboard</span>
                     </a>
@@ -24,10 +24,10 @@
                     </a>
                     <ul class="collapse list-unstyled text-white" id="homeSubmenu">
                         <li>
-                            <a target="ifr_content" href="params.php?c=1">Exame Clínico-Físico</a>
+                            <a href="/params/1">Exame Clínico-Físico</a>
                         </li>
                         <li>
-                            <a target="ifr_content" href="params.php?c=2">Diagnóstico e Prognóstico</a>
+                            <a href="/params/2">Diagnóstico e Prognóstico</a>
                         </li>
                     </ul>
                 </li>
@@ -38,27 +38,27 @@
                     </a>
                     <ul class="collapse list-unstyled text-white" id="pageSubmenu">
                         <li>
-                            <a target="ifr_content" href="modelsAn.php">Anamnese</a>
+                            <a href="/models/anamnese">Anamnese</a>
                         </li>
                         <li>
-                            <a target="ifr_content" href="modelsPT.php">Plano de Tratamento</a>
+                            <a href="/models/plano-terapeutico">Plano de Tratamento</a>
                         </li>
                     </ul>
                 </li>
                 <li id="navManager">
-                    <a target="ifr_content" href="manager.php">
+                    <a href="/manager">
                         <i class="fas fa-briefcase menuPagesIcon"></i>
                         <span class="menuPagesSpan">Gerenciador</span>
                     </a>
                 </li>
                 <li id="navFinancas">
-                    <a target="ifr_content" href="financas.php">
+                    <a href="/financas">
                         <i class="fas fa-dollar-sign menuPagesIcon"></i>
                         <span class="menuPagesSpan">Financeiro</span>
                     </a>
                 </li>
                 <li id="navAgenda">
-                    <a target="ifr_content" href="calendar.php">
+                    <a href="/calendar">
                         <i class="fas fa-calendar-alt menuPagesIcon"></i>
                         <span class="menuPagesSpan">Agenda</span>
                     </a>
@@ -70,7 +70,7 @@
                       <span class="badge badge-pill badge-danger">1</span>
                   </a>
                   <ul class="collapse list-unstyled" id="notifSubmenu">
-                    <li><a target='ifr_content' href='manager.php'>ICON NOTIF</a></li>
+                    <li><a href='/manager/?notif=1'>ICON NOTIF</a></li>
                   </ul>
                 </li>
             </ul>
@@ -91,6 +91,37 @@
                 <input type="text" class="form-control bg-secondary text-dark" id="procurar" placeholder="Procurar por nome...">
               </div>
               <div class="col-2 text-right collapse navbar-collapse" style="justify-content: flex-end;">
+                  <ul class="navbar-nav ml-auto">
+                        <!-- Authentication Links -->
+                        @guest
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </li>
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
+                    </ul>
                 <ul class="nav navbar-nav">
                   <li class="nav-item mr-2" data-toggle="tooltip" data-placement="bottom" title="Fale conosco">
                     <button data-toggle="modal" data-target="#suggestImprov" class="btn btn-primary btn-block rounded-circle p-0"><img src='imgs/sugestao.png' width="40" height="37"></button>
@@ -105,7 +136,7 @@
               </div>
             </div>
           </nav>
-          <div style="top: 80px;height: calc(100% - 80px);">
+          <div class="content-div p-2">
             @yield('content')         
           </div>
         </div>

@@ -29,6 +29,12 @@
         <option value='c'>Consultar/alterar cadastro</option>
     </select>
 
+    @php
+    
+    //dd(Auth::user()->id);
+    
+    @endphp
+    
     <li name="nome1" class="collection-item"><div class="col-6 p-2"><i class="fas fa-building mr-2"></i>NOME1</div><div class="col-6"><form method="post"><input type="hidden" name="user" value="userid"></form></div></li>
 
     <li name="nome2" class="collection-item"><div class="col-6 p-2"><i class="fas fa-user-md mr-2"></i>NOME2</div><div class="col-6"><form method="post"><input type="hidden" name="user" value="userid"></form></div></li>

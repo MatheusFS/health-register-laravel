@@ -59,29 +59,36 @@ span {
     align-items: stretch;
 }
 
-@sdbr-width: 270px; @coll-sdbr-width: 90px;
+:root{
+    --sdbr-width: 270px;
+    --coll-sdbr-width: 90px;
+}
+
 
 #sidebar {
-    min-width: 270px;
-    max-width: 270px;
+    min-width: var(--sdbr-width);
+    max-width: var(--sdbr-width);
     color: #fff;
     transition: all 0.3s;
 }
 
-#content iframe{
-  left: 270px !important;
-  width: calc(100% - 270px);
-  transition: all 0.3s;
+.content-div{
+    position: absolute;
+    top: 80px !important;
+    left: var(--sdbr-width) !important;
+    height: calc(100% - 80px);
+    width: calc(100% - var(--sdbr-width));
+    transition: all 0.3s;
 }
 
 #sidebar.active {
-    min-width: 90px;
-    max-width: 90px;
+    min-width: var(--coll-sdbr-width);
+    max-width: var(--coll-sdbr-width);
     text-align: center;
 }
 
 #sidebar.active .menuPagesIcon{font-size: 23px;}
-#sidebar.active ~ #content iframe{left: 90px !important; width: calc(100% - 90px)}
+#sidebar.active ~ #content .content-div{left: var(--coll-sdbr-width) !important; width: calc(100% - var(--coll-sdbr-width))}
 
 #sidebar.active .sidebar-header img, #sidebar.active .sidebar-header .collapsenav,
 #sidebar.active .CTAs, #sidebar.active .menuPagesSpan {
