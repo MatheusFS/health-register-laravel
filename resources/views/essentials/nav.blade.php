@@ -8,7 +8,7 @@
         <nav id="sidebar" class="text-dark position-fixed h-100" style="z-index:998; top:80px; background-color:#A5CED1 !important">
             <ul class="list-unstyled components mb-0">
               <p class="text-center text-white bg-primary m-0 py-3">
-                <i class='fas fa-"+icon+" mr-2' style='font-size:1.5rem'></i>
+                <i class='fas fa-{{Auth::user()->cadastro->theme('icon')}} mr-2' style='font-size:1.5rem'></i>
                 <span class='menuPagesSpan'>{{ Auth::user()->cadastro->nome }}</span>
               </p>
                 <li id="navDashboard">
@@ -85,12 +85,12 @@
                 </button>
               </div>
               <div class="col-2">
-                <img src="imgs/logowhite.png" width="130" class="mr-2">
+                <img src="{{asset('png/logowhite.png')}}" width="130" class="mr-2">
               </div>
-              <div class="col-7">
+              <div class="col-6">
                 <input type="text" class="form-control bg-secondary text-dark" id="procurar" placeholder="Procurar por nome...">
               </div>
-              <div class="col-2 text-right collapse navbar-collapse" style="justify-content: flex-end;">
+              <div class="col-3 text-right collapse navbar-collapse" style="justify-content: flex-end;">
                   <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
@@ -124,7 +124,7 @@
                     </ul>
                 <ul class="nav navbar-nav">
                   <li class="nav-item mr-2" data-toggle="tooltip" data-placement="bottom" title="Fale conosco">
-                    <button data-toggle="modal" data-target="#suggestImprov" class="btn btn-primary btn-block rounded-circle p-0"><img src='imgs/sugestao.png' width="40" height="37"></button>
+                    <button data-toggle="modal" data-target="#suggestImprov" class="btn btn-primary btn-block rounded-circle"><i class="fas fa-bullhorn"></i></button>
                   </li>
                   <li class="nav-item mr-2" data-toggle="tooltip" data-placement="bottom" title="Alternar conta">
                     <button data-toggle="modal" data-target="#altAccountModal" class="btn btn-dark btn-block rounded-circle"><i class="fas fa-exchange-alt"></i></button>

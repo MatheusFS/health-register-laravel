@@ -19,34 +19,58 @@
   <div onclick="$('.pro,.emp,.adm,.pac').hide(); $('.est').show()" class="col-2 p-2 clickFilter text-center text-info"><i class="fas fa-user-clock mr-2"></i>1</div>
 </div>
 
-<ul class="collection" style="font-size:18px">
+<ul class="list-group" style="font-size:18px">
 
-    <select class='form-control' name='action' onchange='this.form.submit()'>
-        <option value='' disabled selected>Selecione...</option>
-        <option value='a'>Realizar anamnese</option>
-        <option value='e'>Realizar evolução</option>
-        <option value='p'>Consultar prontuário</option>
-        <option value='c'>Consultar/alterar cadastro</option>
-    </select>
-
-    @php
+    @foreach ($childs as $child)
     
-    //dd(Auth::user()->id);
+    <?php
     
-    @endphp
+    $cadastro = $child->cadastro;
     
-    <li name="nome1" class="collection-item"><div class="col-6 p-2"><i class="fas fa-building mr-2"></i>NOME1</div><div class="col-6"><form method="post"><input type="hidden" name="user" value="userid"></form></div></li>
-
-    <li name="nome2" class="collection-item"><div class="col-6 p-2"><i class="fas fa-user-md mr-2"></i>NOME2</div><div class="col-6"><form method="post"><input type="hidden" name="user" value="userid"></form></div></li>
+    $selectAcoes = "<select class='form-control' id='$child->id' onchange=\"window.location.pathname = this.value+'/'+this.id\"><option value='' disabled selected>Selecione...</option>";
+    foreach(explode(",","A,B,C,D,E") as $permissao){
+    switch($permissao){
+      case "A": if($child->cadastro->funcao=="paciente"){$selectAcoes .= "<option value='anamnese/new'>Realizar anamnese</option>";} break;
+      case "B": if($child->cadastro->funcao=="paciente"){$selectAcoes .= "<option value='evolucao'>Realizar evolução</option>";} break;
+      case "C": if($child->cadastro->funcao=="paciente"){$selectAcoes .= "<option value='prontuario'>Consultar prontuário</option>";} break;
+      case "D": $selectAcoes .= "<option value='cadastro'>Consultar/alterar cadastro</option>"; break;
+    }
+    }
+    $selectAcoes .= "</select>";
     
-    <li name="nome3" class="collection-item"><div class="col-6 p-2"><i class="fas fa-user-edit mr-2"></i>NOME3</div><div class="col-6"><form method="post"><input type="hidden" name="user" value="userid"></form></div></li>
+    ?>
     
-    <li name="nome4" class="collection-item"><div class="col-6 p-2"><i class="fas fa-user-clock mr-2"></i>NOME4</div><div class="col-6"><form method="post"><input type="hidden" name="user" value="userid"></form></div></li>
+    <li name="{{mb_strtolower($cadastro->nome)}}" class="list-group-item d-flex-alt el {{substr($cadastro->funcao,0,3)}} text-{{$cadastro->theme('color')}}">
+        <div class="col-6 p-2"><i class="fas fa-{{$cadastro->theme('icon')}} mr-2"></i>{{$cadastro->nome}}</div>
+        <div class="col-6">{!!$selectAcoes!!}</div>
+    </li>
     
-    <li name="nome5" class="collection-item"><div class="col-6 p-2"><i class="fas fa-user-injured mr-2"></i>NOME5</div><div class="col-6"><form method="post"><input type="hidden" name="user" value="userid"></form></div></li>
-    
-    <li class="collection-item"><div class="col-6 p-2"><i class="fas fa-user-slash mr-2"></i>NOME</div><div class="col-6"><form method="post"><input type="hidden" name="user" value="userid"></form></div></li>
+    @endforeach
     
 </ul>
+
+<script type="text/javascript">
+
+  $("ul.components li[id^='nav']", window.parent.document).attr("class","");
+  $("#navDashboard", window.parent.document).attr("class","active");
+  
+  $("#procurar", window.parent.document).keyup(function(){
+    if($(this).val()===""){
+      $(".nexist").remove();
+      $(".foreign").css("display", "none");
+      $(".el:not(.foreign)").css("display","flex");
+    }else{
+      $("[name^='"+$("#procurar", window.parent.document).val().toLowerCase()+"']").css("display", "flex");
+      $(".el:not([name^='"+$("#procurar", window.parent.document).val().toLowerCase()+"'])").css("display", "none");
+      if($("[name^='"+$("#procurar", window.parent.document).val().toLowerCase()+"']").length===0){
+        var content = "<tr class='el nexist bg-danger text-white'><td colspan='3'>"+$("#procurar", window.parent.document).val()+"</td><td><button class='btn btn-light btn-block' onclick=\"cadastrar('"+$("#procurar", window.parent.document).val()+"')\">Cadastrar</button></td></tr>";
+        SmartDashboard(content);
+      }else{
+        $(".nexist").remove();
+      }
+    }
+  });
+  
+</script>
 
 @endsection

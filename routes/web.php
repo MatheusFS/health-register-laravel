@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('home',function(){
+    return redirect('dashboard'); // <----------------- Already logged goes to 'home' instead of 'dashboard'
+});
+
 // Authentication Routes...
 Route::get('/', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/', 'Auth\LoginController@login');
@@ -32,5 +36,7 @@ Route::get('email/verify/{id}', 'Auth\VerificationController@verify')->name('ver
 Route::get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
 
 Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+
+Route::get('anamnese/{action}/{paciente_id}', 'DashboardController@anamnese')->name('anamnese_new');
 
 Route::get('prontuario/{user_id}','DashboardController@prontuario');
