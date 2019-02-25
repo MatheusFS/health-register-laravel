@@ -37,6 +37,9 @@ Route::get('email/resend', 'Auth\VerificationController@resend')->name('verifica
 
 Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 
-Route::get('anamnese/{action}/{paciente_id}', 'DashboardController@anamnese')->name('anamnese_new');
-
+Route::get('anamnese/{action}/{paciente_id}', 'DashboardController@anamnese')->name('anamnese');
+Route::get('evolucao/{anamnese_id}', 'DashboardController@evolucao')->name('evolucao');
 Route::get('prontuario/{user_id}','DashboardController@prontuario');
+Route::get('dados-cadastro/{user_id}','DashboardController@dados_cadastro');
+
+Route::get('params/{type}','DashboardController@params');

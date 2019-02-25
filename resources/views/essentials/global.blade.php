@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC '-//W3C//DTD HTML 4.01//PT' 'https://www.w3.org/TR/html5/strict.dtd'>
-<html lang='pt-BR' style='overflow-x:hidden !important;'>
+<html lang='pt-BR'>
     <head profile='https://www.w3.org/2005/10/profile'>
         <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'>
         <!--JQuery-->

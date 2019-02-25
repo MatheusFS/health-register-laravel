@@ -27,13 +27,13 @@
     
     $cadastro = $child->cadastro;
     
-    $selectAcoes = "<select class='form-control' id='$child->id' onchange=\"window.location.pathname = this.value+'/'+this.id\"><option value='' disabled selected>Selecione...</option>";
+    $selectAcoes = "<select class='form-control' id='{$child->cadastro->id}' onchange=\"window.location.pathname = this.value+'/'+this.id\"><option value='' disabled selected>Selecione...</option>";
     foreach(explode(",","A,B,C,D,E") as $permissao){
     switch($permissao){
       case "A": if($child->cadastro->funcao=="paciente"){$selectAcoes .= "<option value='anamnese/new'>Realizar anamnese</option>";} break;
       case "B": if($child->cadastro->funcao=="paciente"){$selectAcoes .= "<option value='evolucao'>Realizar evolução</option>";} break;
       case "C": if($child->cadastro->funcao=="paciente"){$selectAcoes .= "<option value='prontuario'>Consultar prontuário</option>";} break;
-      case "D": $selectAcoes .= "<option value='cadastro'>Consultar/alterar cadastro</option>"; break;
+      case "D": $selectAcoes .= "<option value='dados-cadastro'>Consultar/alterar cadastro</option>"; break;
     }
     }
     $selectAcoes .= "</select>";

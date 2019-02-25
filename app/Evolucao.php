@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Anamnese extends Model
+class Evolucao extends Model
 {
-    protected $table = 'anamneses';
+    protected $table = "evolucoes";
     
     public function cadastro_resp(){
         return $this->belongsTo('App\Cadastro', 'responsavel');

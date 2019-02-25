@@ -17,29 +17,27 @@ $objkeys_as = ["CRM","Nome","E-mail","Telefone","Queixa principal","História pr
 
 <div id='accordion' class="w-100">
 
-    @foreach ($anamneses as $anamnese)
+    @foreach ($items as $item)
 
     @php
     $key = $loop->iteration;
     if($key>1){$color="info";$type="Reavaliação";}else{$color="primary";$type="Avaliação";}
-    if($anamnese->responsavel==0){
-    //$usr["nome"] = "Sistema";
-    }
+    if($item->responsavel==0){$item->cadastro_resp->nome = "Sistema";}
     @endphp
     
     
     <div class='card'>
       <div class='card-header p-0' id='heading{{$key}}'>
         <button class='btn btn-{{$color}} btn-block rounded-0 p-2' data-toggle='collapse' data-target='#collapse{{$key}}' aria-expanded='true' aria-controls='collapse{{$key}}'>
-          {{ $type }} {{ $anamnese->data }} - 
-          <span class="badge badge-secondary">{{ $anamnese->responsavel_fk->nome }}</span>  
+          {{ $type }} ({{ $item->created_at }}) - 
+          <span class="badge badge-secondary">{{ $item->cadastro_resp->nome }}</span>  
         </button>
       </div>
 
       <div id='collapse{{$key}}' class='collapse' aria-labelledby='heading{{$key}}' data-parent='#accordion'>
         <div class='card-body p-1'>
             <?php
-            foreach($anamneses as $column=>$value){ 
+            foreach($items as $column=>$value){ 
                 if(in_array($column,$fields)&&$value!=""&&$value!="{}"&&$value!="[]"){ 
             ?>
            <h3 class="mb-1 mt-3"><?php echo $fields_as[array_search($column, $fields)] ?></h3>
@@ -54,47 +52,15 @@ $objkeys_as = ["CRM","Nome","E-mail","Telefone","Queixa principal","História pr
               <div class="input-group-prepend">
                 <span class="input-group-text"><b><?php if(is_numeric($a)!="number"){echo $objkeys_as[array_search($a, $objkeys)];}else{echo $a;} ?></b></span>
               </div>
-                  <input type="text" class="form-control" value="<?php echo $item ?>" readonly></div>
+                  <input type="text" class="form-control" value="{{$item}}" readonly></div>
               <?php 
-                  }else{
-                    $str = "";
-                    foreach($item as $sitem){
-                      if(gettype($sitem)!="array"){
-                        $str .= $sitem." ";
-                      }else{
-                        foreach($sitem as $ssitem){
-                          if(gettype($ssitem)!="array"){
-                            $str .= $ssitem." ";
-                          }else{
-                            foreach($ssitem as $sssitem){
-                              if(gettype($ssitem)!="array"){
-                                $str .= $sssitem." ";
-                              }else{
-                                foreach($sssitem as $ssssitem){
-                                  if(gettype($ssssitem)!="array"){
-                                    $str .= $ssssitem." ";
-                                  }else{
-                                    foreach($ssssitem as $sssssitem){
-                                      if(gettype($sssssitem)!="array"){
-                                        $str .= $sssssitem." ";
-                                      }else{
-                                        $str = "WTF!";
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    } ?>
-                    <span class="badge badge-primary m-2 fs-15"><?php echo $str ?></span>
+                  }else{ ?>
+                    <span class="badge badge-primary m-2 fs-15">@json($item)</span>
           <?php
                   }
                 }
               }else{ ?>
-              <input type="text" class="form-control" value="<?php echo $value ?>" readonly>
+              <input type="text" class="form-control" value="{{$value}}" readonly>
           <?php }}} ?>
         </div>
       </div>

@@ -1,4 +1,4 @@
-body{overflow-x: hidden; font-family: 'Vani';}
+body{overflow-x: hidden; /*font-family: 'Vani';*/}
 
 .lh-0{line-height: 0 !important}
 
@@ -14,19 +14,19 @@ body{overflow-x: hidden; font-family: 'Vani';}
 .bg-secondary{background-color:#A5CED1 !important}
 
 .btn-ligthen{background-color:rgba(255, 255, 255, 0.5);border-color:rgba(255, 255, 255, 0.5);}
-.btn-primary:hover{background-color:#13707d;border-color:rgba(22, 136, 153, 1);}
-.btn-primary:focus{box-shadow: 0 0 0 0.2rem rgba(22, 136, 153, 0.5);}
+/*.btn-primary:hover{background-color:#13707d;border-color:rgba(22, 136, 153, 1);}
+.btn-primary:focus{box-shadow: 0 0 0 0.2rem rgba(22, 136, 153, 0.5);}*/
 
 .d-grid-1{display:grid; grid-template-columns: auto;grid-gap: 4px;}
 .d-grid-2{display:grid; grid-template-columns: auto auto;grid-gap: 4px;}
 .d-grid-3{display:grid; grid-template-columns: auto auto auto;grid-gap: 4px;}
 .d-grid-4{display:grid; grid-template-columns: auto auto auto auto;grid-gap: 4px;}
 
-@font-face {
+/*@font-face {
   font-display: auto;
   font-family: 'Vani';
   src: url('lib/fonts/Vani.woff2') format('woff2'),
       url('lib/fonts/Vani.woff') format('woff');
   font-weight: normal;
   font-style: normal;
-}
+}*/
