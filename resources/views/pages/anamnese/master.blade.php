@@ -18,7 +18,7 @@
 
 ?>
 
-@extends('essentials/nav')
+@extends('essentials/nav/master')
 
 @section('title','Anamnese ~ '.$paciente->cadastro->nome)
 

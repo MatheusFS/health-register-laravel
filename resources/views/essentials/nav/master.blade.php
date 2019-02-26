@@ -140,7 +140,9 @@
             @yield('content')         
           </div>
         </div>
-</div> 
+</div>
+
+@include('essentials.nav.partials.alternate-account')
 
 
 <script type="text/javascript">

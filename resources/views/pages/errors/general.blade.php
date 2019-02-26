@@ -1,7 +1,7 @@
-@extends('essentials/nav')
+@extends('essentials/nav/master')
 
 @section('content')
 <div class="alert alert-danger" role="alert">
   {{$message}}
-</div><h2 class="text-"></h2>
+</div>
 @endsection

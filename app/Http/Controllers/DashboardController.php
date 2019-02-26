@@ -65,10 +65,13 @@ class DashboardController extends Controller
     
     public function params($type){
         if($type<3){
-            $parametros = Parametro::where('id_usuario',Auth::user()->id)->get();
+            $parametros = Parametro::where(['id_usuario'=>Auth::user()->id, 'type'=>$type])->get();
             $modelo = Parametro::modelo();
-            foreach($parametros as $parametro){
-                $exames[$parametro['nome']][$parametro['quantificador']] = $parametro['lf'];
+            $exames = array();
+            if(count($parametros)){
+                foreach($parametros as $parametro){
+                    $exames[$parametro['exame']][$parametro['quantificador']] = $parametro['lf'];
+                }
             }
             return view('pages/params',['type'=>$type,'parametros'=>$parametros,'exames'=>$exames,'modelo'=>$modelo]);
         }else{

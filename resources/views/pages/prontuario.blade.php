@@ -1,4 +1,4 @@
-@extends('essentials/nav')
+@extends('essentials/nav/master')
 
 @php
 $fields = ["endereco","DM","DM_medico","HC","CE","CD","CP","PT","eesp_json","interc_json"];

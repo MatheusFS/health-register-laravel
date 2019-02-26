@@ -1,4 +1,4 @@
-@extends('essentials/nav')
+@extends('essentials/nav/master')
 
 @section('title','Evolução ~ '.$paciente->cadastro->nome)
 
