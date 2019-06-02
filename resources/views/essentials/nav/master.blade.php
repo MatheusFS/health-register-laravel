@@ -109,15 +109,11 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                    <a class="dropdown-item" href="{{ route('logout') }}">
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
+
                                 </div>
                             </li>
                         @endguest
@@ -130,7 +126,10 @@
                     <button data-toggle="modal" data-target="#altAccountModal" class="btn btn-dark btn-block rounded-circle"><i class="fas fa-exchange-alt"></i></button>
                   </li>
                   <li class="nav-item" data-toggle="tooltip" data-placement="bottom" title="Sair">
-                    <a href="sair.php" class="btn btn-danger btn-block rounded-circle" style="text-align:center"><i class="fas fa-sign-out-alt"></i></a>
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="btn btn-danger btn-block rounded-circle" style="text-align:center"><i class="fas fa-sign-out-alt"></i></a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                      @csrf
+                    </form>
                   </li>
                 </ul>
               </div>

@@ -1,5 +1,7 @@
 @extends('essentials/nav/master')
 
+@section('title', 'Dashboard - Health Register')
+
 @section('content')
 
 <head>
