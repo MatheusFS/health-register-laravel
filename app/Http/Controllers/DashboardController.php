@@ -34,7 +34,7 @@ class DashboardController extends Controller
     }
     
     public function anamnese($action, $paciente_id){
-        if(Auth::user()["cadastro"]["funcao"]!="profissional"){$avalizado = 0;}else{$avalizado = 1;}
+        $avalizado = (Auth::user()["cadastro"]["funcao"]!="profissional");
         $paciente = User::find($paciente_id);
         switch($action){
             case 'new': return view('pages/anamnese/master',['paciente'=>$paciente, 'avalizado'=>$avalizado]);
