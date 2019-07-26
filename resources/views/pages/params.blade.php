@@ -6,13 +6,7 @@
     {{ csrf_field() }}
     <div class="row p-2 bg-dark">
         <div class="col-6">
-            <p class="fs-20 mt-2 mb-0 text-light">
-            @if($type==1)
-            Exame Clínico-Físico
-            @else
-            Diagnóstico e Prognóstico
-            @endif
-            </p>
+            <p class="fs-20 mt-2 mb-0 text-light">Parâmetros</p>
         </div>
         <div class="col-6">
             <div class="input-group">
@@ -49,6 +43,10 @@
     </div>
     @endforeach
 </div>
+<form action="/exames/DOR" method="POST">
+    @method('DELETE')
+    <button type="submit">Teste</button>
+</form>
 @else
 @component('components.alert',['type' => 'info'])
 Sem parâmetros desse tipo.

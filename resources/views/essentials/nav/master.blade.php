@@ -9,7 +9,7 @@
             <ul class="list-unstyled components mb-0">
               <p class="text-center text-white bg-primary m-0 py-3">
                 <i class='fas fa-{{Auth::user()->cadastro->theme('icon')}} mr-2' style='font-size:1.5rem'></i>
-                <span class='menuPagesSpan'>{{ Auth::user()->cadastro->nome }}</span>
+                <span class='menuPagesSpan'>{{Auth::user()->cadastro->nome}}</span>
               </p>
                 <li id="navDashboard">
                     <a href="/dashboard">
@@ -17,19 +17,11 @@
                         <span class="menuPagesSpan">Dashboard</span>
                     </a>
                 </li>
-                <li id="navParametros">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                <li id="navExames">
+                    <a href="/exames">
                         <i class="fas fa-image menuPagesIcon"></i>
-                        <span class="menuPagesSpan">Parâmetros</span>
+                        <span class="menuPagesSpan">Exames</span>
                     </a>
-                    <ul class="collapse list-unstyled text-white" id="homeSubmenu">
-                        <li>
-                            <a href="/params/1">Exame Clínico-Físico</a>
-                        </li>
-                        <li>
-                            <a href="/params/2">Diagnóstico e Prognóstico</a>
-                        </li>
-                    </ul>
                 </li>
                 <li id="navModelos">
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">

@@ -42,5 +42,4 @@ Route::get('evolucao/{anamnese_id}', 'DashboardController@evolucao')->name('evol
 Route::get('prontuario/{user_id}','DashboardController@prontuario');
 Route::get('dados-cadastro/{user_id}','DashboardController@dados_cadastro');
 
-Route::get('params/{type}','DashboardController@params');
-Route::post('params/{type}','ParametroController@post');
+Route::resource('exames', 'ExameController');

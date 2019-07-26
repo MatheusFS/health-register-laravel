@@ -40,4 +40,8 @@ class User extends Authenticatable
     public function cadastro(){
         return $this->hasOne('App\Cadastro','id');
     }
+
+    public function parametros(){
+        return $this->hasMany('App\Parametro');
+    }
 }

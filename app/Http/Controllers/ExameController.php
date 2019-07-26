@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Parametro;
+use App\Exame;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ParametroController extends Controller
-{
+class ExameController extends Controller {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        foreach(Auth::user()->parametros as $parametro){
-            $this->show($parametro);
+    public function index() {
+
+        $exames = Exame::where('user_id', Auth::id())->get();
+        foreach ($exames as $exame) {
+            $modelViews[] = $this->show($exame);
         }
+        return view('Exame.index')->with('exames', $modelViews);
     }
 
     /**
@@ -25,8 +26,7 @@ class ParametroController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
@@ -36,54 +36,52 @@ class ParametroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Parametro  $parametro
+     * @param  \App\Exame  $exame
      * @return \Illuminate\Http\Response
      */
-    public function show(Parametro $parametro)
-    {
-        echo '<pre>';
-        print_r($parametro->attributesToArray());
+    public function show(Exame $exame) {
+
+        return view('Exame.show')->with('exame', $exame);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Parametro  $parametro
+     * @param  \App\Exame  $exame
      * @return \Illuminate\Http\Response
      */
-    public function edit(Parametro $parametro)
-    {
-        //
+    public function edit(Exame $exame) {
+
+        return view('Exame.edit')->with('exame', $exame);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Parametro  $parametro
+     * @param  \App\Exame  $exame
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Parametro $parametro)
+    public function update(Request $request, Exame $exame)
     {
-        //
+        return view('Exame.update')->with('request', $request);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Parametro  $parametro
+     * @param  \App\Exame  $exame
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Parametro $parametro)
+    public function destroy(Exame $exame)
     {
-        echo json_encode($parametro);
+        return view('Exame.destroy')->with('exame', $exame);
     }
 }
