@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Assoc extends Model
 {
-    protected $table = "assoc";
+    protected $table = "associacoes";
     
     public function user(){
         return $this->belongsTo('App\User','child');
